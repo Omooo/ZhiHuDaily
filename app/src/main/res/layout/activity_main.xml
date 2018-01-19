@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
+    android:background="#F3F3F3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="top.omooo.zhihudaily.MainActivity">
@@ -30,7 +31,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="230dp" />
             <TextView
                 android:text="今日新闻"
                 android:layout_marginTop="10dp"
