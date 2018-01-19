@@ -27,4 +27,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     compile 'com.android.support:design:26.1.0'
+
+    //轮播图
+    compile 'com.youth.banner:banner:1.4.10'
+
+    compile 'com.facebook.fresco:fresco:0.12.0'
+
 }
