@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ArrayList<String> list_path = new ArrayList<>();
     private ArrayList<String> list_title = new ArrayList<>();
+    private ArrayList<Integer> list_id = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private List<RecycleItemInfo> mItemInfos = new ArrayList<>();
     private List<CustomBean> mCustomBeans = new ArrayList<>();
@@ -99,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < mCustomBeans.size(); i++) {
                     list_path.add(mCustomBeans.get(i).getImageUrl());
                     list_title.add(mCustomBeans.get(i).getTitle());
+                    list_id.add(mCustomBeans.get(i).getId());
                 }
-                addBanner(list_path, list_title);
+                addBanner(list_path, list_title,list_id);
 
                 //给RecycleView添加数据
                 mCustomBeans = cutJson.getDataFromJson(result, 1);
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
      * @param urlList   图片链接
      * @param titleList 标题
      */
-    private void addBanner(ArrayList<String> urlList,ArrayList<String> titleList) {
+    private void addBanner(ArrayList<String> urlList, ArrayList<String> titleList, final ArrayList<Integer> idList) {
         Banner banner = findViewById(R.id.banner);
         banner.setImageLoader(new FrescoImageLoader());
 
@@ -138,7 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {
-                        Toast.makeText(MainActivity.this, "点击了第" + position + "个轮播图", Toast.LENGTH_SHORT).show();
+                        int articleId = idList.get(position);
+                        Intent intent = new Intent(MainActivity.this, DetailPageActivity.class);
+                        intent.putExtra("articleId", articleId + "");
+                        startActivity(intent);
                     }
                 })
                 .setBannerTitles(titleList)

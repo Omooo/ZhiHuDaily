@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/details_page_toolbar"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/toolbar_backImage"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/details_page_back_32"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="25dp" />
+            <ImageView
+                android:id="@+id/toolbar_share"
+                android:src="@drawable/details_page_share"
+                android:layout_marginLeft="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="25dp" />
+            <ImageView
+                android:id="@+id/toolbar_fav"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/details_page_fav"
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="25dp" />
+            <Button
+                android:id="@+id/toolbar_comments"
+                android:background="@null"
+                android:drawableLeft="@drawable/details_page_comments"
+                android:text="233"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/write"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <Button
+                android:id="@+id/toolbar_prise"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:drawableLeft="@drawable/details_page_prise"
+                android:text="520"
+                android:textSize="18sp"
+                android:textColor="@color/write"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/details_page_imageView"
+                android:src="@drawable/image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:id="@+id/details_page_textView"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="7dp"
+                android:text="啊哈哈嗝"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

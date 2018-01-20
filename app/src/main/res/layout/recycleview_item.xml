@@ -19,6 +19,7 @@
         android:layout_height="match_parent">
         <TextView
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/tv_contentTitle"
             android:text="啊哈哈哈哈嗝啊哈哈哈哈哈啊哈哈哈哈嗝啊哈哈哈哈哈啊哈哈哈哈嗝啊哈哈哈哈哈"
             android:maxLines="3"
