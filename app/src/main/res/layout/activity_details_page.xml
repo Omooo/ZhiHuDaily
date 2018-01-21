@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@color/indexBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
@@ -79,7 +80,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="7dp"
-                android:text="啊哈哈嗝"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

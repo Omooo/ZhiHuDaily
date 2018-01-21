@@ -7,14 +7,24 @@ package top.omooo.zhihudaily.bean;
 public class RecycleItemInfo {
     private String title;
     private String imageUrl;
+    private int id;
 
-    public RecycleItemInfo(String title, String imageUrl) {
+    public RecycleItemInfo(String title, String imageUrl, int id) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

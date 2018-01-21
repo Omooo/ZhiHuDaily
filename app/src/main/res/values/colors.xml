@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#FF6666</color>
     <color name="colorAccent">#FF4081</color>
     <color name="write">#FFFFFF</color>
+    <color name="indexBackground">#FFFFFF</color>
+    <color name="indexText">#999999</color>
+    <color name="indexCardView">#FFFFFF</color>
+    <color name="detailsContent">#030303</color>
 </resources>

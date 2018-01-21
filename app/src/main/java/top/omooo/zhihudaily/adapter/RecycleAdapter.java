@@ -2,6 +2,7 @@ package top.omooo.zhihudaily.adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import top.omooo.zhihudaily.bean.RecycleItemInfo;
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleViewHolder> {
     private List<RecycleItemInfo> mItemInfos;
     private Context mContext;
+    private OnRecycleViewItemClickListener mListener;
 
     public RecycleAdapter(List<RecycleItemInfo> itemInfos, Context context) {
         mItemInfos = itemInfos;
@@ -37,12 +39,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
     }
 
     @Override
-    public void onBindViewHolder(RecycleViewHolder holder, int position) {
+    public void onBindViewHolder(RecycleViewHolder holder, final int position) {
         String contentTitle = mItemInfos.get(position).getTitle();
         String contentImage = mItemInfos.get(position).getImageUrl();
         holder.mViewTitle.setText(contentTitle);
         holder.mImageViewUrl.setImageURI(Uri.parse(contentImage));
 
+        //Item点击事件
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.OnItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -54,10 +63,21 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
         TextView mViewTitle;
         //        ImageView mImageViewUrl;
         SimpleDraweeView mImageViewUrl;
+        CardView mCardView;
         public RecycleViewHolder(View itemView) {
             super(itemView);
             mViewTitle = itemView.findViewById(R.id.tv_contentTitle);
             mImageViewUrl = itemView.findViewById(R.id.iv_contentImage);
+            mCardView = itemView.findViewById(R.id.cardview);
         }
+    }
+
+    //暴露给外部的方法
+    public void setOnItemClick(OnRecycleViewItemClickListener listener) {
+        mListener = listener;
+    }
+    //点击事件接口
+    public interface OnRecycleViewItemClickListener {
+        void OnItemClick(int itemPosition);
     }
 }

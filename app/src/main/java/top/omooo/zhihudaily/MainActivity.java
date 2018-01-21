@@ -1,11 +1,13 @@
 package top.omooo.zhihudaily;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -71,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.item_setting_mode:
                         Toast.makeText(MainActivity.this, "切换模式", Toast.LENGTH_SHORT).show();
+                        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                        getDelegate().setLocalNightMode(currentNightMode == Configuration.UI_MODE_NIGHT_NO
+                                ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+                        // 同样需要调用recreate方法使之生效
+                        recreate();
                         break;
                     case R.id.item_setting_all:
                         Toast.makeText(MainActivity.this, "设置选项", Toast.LENGTH_SHORT).show();
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 //给RecycleView添加数据
                 mCustomBeans = cutJson.getDataFromJson(result, 1);
                 for (int i = 0; i < mCustomBeans.size(); i++) {
-                    mItemInfos.add(new RecycleItemInfo(mCustomBeans.get(i).getTitle(), mCustomBeans.get(i).getImageUrl()));
+                    mItemInfos.add(new RecycleItemInfo(mCustomBeans.get(i).getTitle(), mCustomBeans.get(i).getImageUrl(), mCustomBeans.get(i).getId()));
                 }
                 addContent(mItemInfos);
             }
@@ -154,13 +161,28 @@ public class MainActivity extends AppCompatActivity {
                 .setDelayTime(4000)
                 .start();
     }
-    private void addContent(List<RecycleItemInfo> itemInfos) {
+
+    /**
+     * RecycleView每个Item的数据
+     * @param itemInfos
+     */
+    private void addContent(final List<RecycleItemInfo> itemInfos) {
         mRecyclerView = findViewById(R.id.recycleview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        for (int i = 0; i < 10; i++) {
 //            mItemInfos.add(new RecycleItemInfo(" i = " + i, "http://p3.so.qhmsg.com/bdr/_240_/t01ded66f320dd27558.jpg"));
 //        }
-        mRecyclerView.setAdapter(new RecycleAdapter(itemInfos, this));
+        RecycleAdapter adapter = new RecycleAdapter(itemInfos, this);
+        adapter.setOnItemClick(new RecycleAdapter.OnRecycleViewItemClickListener() {
+            @Override
+            public void OnItemClick(int itemPosition) {
+                int articleId = itemInfos.get(itemPosition).getId();
+                Intent intent = new Intent(MainActivity.this, DetailPageActivity.class);
+                intent.putExtra("articleId", articleId + "");
+                startActivity(intent);
+            }
+        });
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
