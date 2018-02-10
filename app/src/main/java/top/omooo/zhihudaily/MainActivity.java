@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void OnBannerClick(int position) {
                         int articleId = idList.get(position);
-                        Intent intent = new Intent(MainActivity.this, DetailPageActivity.class);
+                        Intent intent = new Intent(MainActivity.this, WebDetailPageActivity.class);
                         intent.putExtra("articleId", articleId + "");
                         startActivity(intent);
                     }
