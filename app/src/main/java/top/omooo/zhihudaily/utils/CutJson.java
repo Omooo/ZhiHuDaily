@@ -20,6 +20,7 @@ public class CutJson {
     private static final int TYPE_BANNER = 0;   //解析轮播图数据标识
     private static final int TYPE_RECYCLE_ITEM = 1; //解析RecycleView的Item内容标识
     private static final int TYPE_DETAILS_ARTICLE = 2;  //解析详情页的文章内容
+    private static final int TYPE_THEMES = 3;   //解析侧滑栏列表主题
 
     public List getDataFromJson(String json, int type) {
         List<CustomBean> customBeans = new ArrayList<>();
@@ -54,6 +55,16 @@ public class CutJson {
                 String imageUrl = mJSONObject.getString("image");
                 detailsArticleBeans.add(new DetailsArticleBean(articleBody, imageSource, title, imageUrl));
                 return detailsArticleBeans;
+            } else if (type == TYPE_THEMES) {
+                mJSONArray = mJSONObject.getJSONArray("stories");
+                for (int i = 0; i < mJSONArray.length(); i++) {
+                    JSONObject object = (JSONObject) mJSONArray.get(i);
+                    int id = object.getInt("id");
+                    String title = object.getString("title");
+                    String imageUrl = "nullUrl";
+                    customBeans.add(new CustomBean(imageUrl, title, id));
+                }
+                return customBeans;
             }
         } catch (JSONException e) {
             e.printStackTrace();

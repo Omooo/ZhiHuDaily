@@ -8,4 +8,5 @@
     <color name="indexText">#999999</color>
     <color name="indexCardView">#FFFFFF</color>
     <color name="detailsContent">#030303</color>
+    <color name="gray">#999999</color>
 </resources>

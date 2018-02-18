@@ -2,7 +2,9 @@ package top.omooo.zhihudaily;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private List<RecycleItemInfo> mItemInfos = new ArrayList<>();
     private List<CustomBean> mCustomBeans = new ArrayList<>();
+    private NavigationView mNavigationView;
     //获取Item内容以及轮播图内容的Url
     private static final String URL = "https://news-at.zhihu.com/api/4/news/latest";
     private static final String TAG = "MainActivity";
@@ -55,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initView();
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //处理Item的点击事件
+                switch (item.getItemId()) {
+                    case R.id.item1:
+                        Toast.makeText(MainActivity.this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     private void initView() {
@@ -92,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         //添加内容
 //        addContent();
         getDataFromUrl();
+
+        mNavigationView = findViewById(R.id.navigation_view);
     }
 
     public void getDataFromUrl() {
@@ -135,14 +152,6 @@ public class MainActivity extends AppCompatActivity {
         Banner banner = findViewById(R.id.banner);
         banner.setImageLoader(new FrescoImageLoader());
 
-//        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg");
-//        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
-//        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2b16zuj30ci08cwf4.jpg");
-//        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2e7vsaj30ci08cglz.jpg");
-//        list_title.add("Hello");
-//        list_title.add("Who");
-//        list_title.add("are");
-//        list_title.add("you");
         banner.setImages(urlList)
                 .setOnBannerListener(new OnBannerListener() {
                     @Override

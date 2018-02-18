@@ -2,14 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item1"
-        android:title="测试"
-        android:icon="@mipmap/ic_launcher"/>
+        android:title="日常心理学"
+        android:icon="@drawable/to_left"/>
     <item
         android:id="@+id/item2"
-        android:title="测试"
-        android:icon="@mipmap/ic_launcher"/>
+        android:title="用户推荐日报"
+        android:icon="@drawable/to_left"/>
     <item
         android:id="@+id/item3"
-        android:title="测试"
-        android:icon="@mipmap/ic_launcher"/>
+        android:title="电影日报"
+        android:icon="@drawable/to_left"/>
+    <item
+        android:id="@+id/item4"
+        android:title="不许无聊"
+        android:icon="@drawable/to_left"/>
+    <item
+        android:id="@+id/item5"
+        android:title="设计日报"
+        android:icon="@drawable/to_left"/>
+    <item
+        android:id="@+id/item6"
+        android:title="大公司日报"
+        android:icon="@drawable/to_left"/>
+    <item
+        android:id="@+id/item7"
+        android:title="财经日报"
+        android:icon="@drawable/to_left"/>
 </menu>
