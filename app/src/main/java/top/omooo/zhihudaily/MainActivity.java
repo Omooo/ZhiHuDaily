@@ -31,6 +31,7 @@ import top.omooo.zhihudaily.adapter.RecycleAdapter;
 import top.omooo.zhihudaily.bean.CustomBean;
 import top.omooo.zhihudaily.bean.RecycleItemInfo;
 import top.omooo.zhihudaily.ui.FrescoImageLoader;
+import top.omooo.zhihudaily.utils.AutoLinearLayoutManager;
 import top.omooo.zhihudaily.utils.CutJson;
 import top.omooo.zhihudaily.utils.OkHttpUtils;
 import top.omooo.zhihudaily.utils.OnNetResultListener;
@@ -177,6 +178,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addContent(final List<RecycleItemInfo> itemInfos) {
         mRecyclerView = findViewById(R.id.recycleview);
+
+        mRecyclerView.setNestedScrollingEnabled(false);
+//        mRecyclerView.setLayoutManager(new AutoLinearLayoutManager(this));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        for (int i = 0; i < 10; i++) {
 //            mItemInfos.add(new RecycleItemInfo(" i = " + i, "http://p3.so.qhmsg.com/bdr/_240_/t01ded66f320dd27558.jpg"));
@@ -186,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnItemClick(int itemPosition) {
                 int articleId = itemInfos.get(itemPosition).getId();
-                Intent intent = new Intent(MainActivity.this, DetailPageActivity.class);
+                Intent intent = new Intent(MainActivity.this, WebDetailPageActivity.class);
                 intent.putExtra("articleId", articleId + "");
                 startActivity(intent);
             }

@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,15 +23,22 @@ public class WebDetailPageActivity extends AppCompatActivity {
     private FrameLayout mFrameLayout;
     private WebView mWebView;
     private String webUrl = "http://daily.zhihu.com/story/";
+    private Toolbar mToolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_details_page_web);
 
         initView();
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.write));
+
     }
 
     private void initView() {
+        mToolbar = findViewById(R.id.toolbar_detail_web);
+
         mFrameLayout = findViewById(R.id.web_frame);
         mWebView = new WebView(this);
         WebSettings settings = mWebView.getSettings();
